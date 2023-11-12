@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Field, Formik } from 'formik';
 import { Component } from 'react';
 import * as yup from 'yup';
@@ -44,3 +45,6 @@ export class ContactForm extends Component {
     </Formik>
   );
 }
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
