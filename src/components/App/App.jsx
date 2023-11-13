@@ -24,20 +24,23 @@ export class App extends Component {
       contacts: [{ name, number, id: nanoid() }, ...pState.contacts],
     }));
   };
-  onDelete = e => {
+  onDelete = id => {
+    console.log(id);
     this.setState(pState => ({
-      contacts: pState.contacts.filter(x => x.id !== e.target.id),
+      contacts: pState.contacts.filter(x => x.id !== id),
     }));
   };
   onFilterChange = e => {
     this.setState({ filter: e.target.value.toLowerCase() });
   };
   visibleContacts = () =>
-    this.state.contacts.filter(
-      c =>
-        c.name.toLowerCase().includes(this.state.filter) ||
-        c.number.toLowerCase().includes(this.state.filter)
-    );
+    this.state.filter
+      ? this.state.contacts.filter(
+          c =>
+            c.name.toLowerCase().includes(this.state.filter) ||
+            c.number.toLowerCase().includes(this.state.filter)
+        )
+      : this.state.contacts;
   render = () => (
     <Container>
       <Title>Phonebook</Title>

@@ -14,17 +14,13 @@ const validationSchema = yup.object().shape({
     .required(),
 });
 export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+  onSubmit = (values, { resetForm }) => {
+    this.props.onSubmit(values.name, values.number);
+    resetForm();
   };
-  onSubmit = e => {
-    this.props.onSubmit(e.name, e.number);
-  };
-
   render = () => (
     <Formik
-      initialValues={this.state}
+      initialValues={{ name: '', number: '' }}
       validationSchema={validationSchema}
       onSubmit={this.onSubmit}
     >
